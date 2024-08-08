@@ -1,0 +1,21 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Pull the Docker image
+      run: docker pull skilledsantoshh/test:hareykrishna_ci_cd
+
+    - name: Delete the old Docker container
+      run: docker rm -f hareykrishna_ci_cd_container || true
+
+    - name: Run the Docker container
+      run: docker run -d -p 4000:4000 --name hareykrishna_ci_cd_container skilledsantoshh/test:hareykrishna_ci_cd

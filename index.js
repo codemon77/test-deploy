@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
   const htmlFilePath = path.join(__dirname, "public", "index.html");

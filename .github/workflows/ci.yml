@@ -18,7 +18,7 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Build the Docker image
-        run: docker build -t skilledsantoshh/test:hareykrishna_ci_cd .
+        run: docker build --build-arg NODE_ARG=node:14-alpine -t skilledsantoshh/test:hareykrishna_ci_cd .
 
       - name: Push the Docker image to Docker Hub
         run: docker push skilledsantoshh/test:hareykrishna_ci_cd
